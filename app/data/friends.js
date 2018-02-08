@@ -1,6 +1,6 @@
 
 // https://stackoverflow.com/questions/11301438/return-index-of-greatest-value-in-an-array
-var allFriends = [
+var friends = [
     {
         "name": "Joseph",
         "photo": "test.jpg",
@@ -50,4 +50,4 @@ var allFriends = [
         ]
       }
 ]
-module.exports = allFriends;
+module.exports = friends;
