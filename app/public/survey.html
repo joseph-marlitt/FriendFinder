@@ -9,11 +9,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel= "stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
-  
-
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-
   <div class="container">
     <h2>Survey Questions</h2>
     <hr>
@@ -24,9 +22,87 @@
     <input type="text" name="" id="photo" class="form-control" required="">
     <hr>
     <h3>Survey</h3>
-    <h4>How much do you value critical thinking in a friend?</h4>
-    <select data-placeholder="Choose an answer" multiple class="chosen-select"></select>
-    
+    <h4>1. How much do you value critical thinking in a friend?</h4>
+        <select class="livesearch" style="width:400px;" id="q1">
+        <option>1 (Strongly Disagree)</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5 (Strongly Agree)</option>
+    </select>
+    <h4>2. Climbing is an awesome thing to do, amirite?</h4>
+        <select class="livesearch" style="width:400px;" id="q2">
+        <option>1 (Strongly Disagree)</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5 (Strongly Agree)</option>
+    </select>
+    <h4>3. You respond to simple requests or issues with the term "no worries..."</h4>
+        <select class="livesearch" style="width:400px;" id="q3">
+        <option>1 (Strongly Disagree)</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5 (Strongly Agree)</option>
+    </select>
+    <h4>4. When you are driving, how often do you listen to podcasts vs. music?</h4>
+        <select class="livesearch" style="width:400px;" id="q4">
+        <option>1 (Podcasts)</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5 (Music)</option>
+    </select>
+    <h4>5. Sports are the best reason to have live television.</h4>
+        <select class="livesearch" style="width:400px;" id="q5">
+        <option>1 (Strongly Disagree)</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5 (Strongly Agree)</option>
+    </select>
+    <h4>6. Do you think that eating food is a necessity or a luxury?</h4>
+        <select class="livesearch" style="width:400px;" id="q6">
+        <option>1 (Necessity)</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5 (Luxury)</option>
+    </select>
+    <h4>7. Cats?</h4>
+        <select class="livesearch" style="width:400px;" id="q7">
+        <option>1 (Strongly Disagree)</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5 (Strongly Agree)</option>
+    </select>
+    <h4>8. Dogs?</h4>
+        <select class="livesearch" style="width:400px;" id="q8">
+        <option>1 (Strongly Disagree)</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5 (Strongly Agree)</option>
+    </select>
+    <h4>9. Pancakes or Waffles?</h4>
+        <select class="livesearch" style="width:400px;" id="q9">
+        <option>1 (Pancakes)</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5 (Waffles)</option>
+    </select>
+    <br>
+    <h4>10. Bacon or Sausage?</h4>
+        <select class="livesearch" style="width:400px;" id="q10">
+        <option>1 (Bacon)</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5 (Sausage)</option>
+    </select>
     <hr>
     <div class="text-left">
         <button type="submit" class="btn btn-primary btn-md" id="add-btn">Submit</button>
@@ -36,7 +112,7 @@
   </div>
 
   <script type="text/javascript">
-  
+          $(".livesearch").chosen();
   </script>
   
 </body>

@@ -50,4 +50,4 @@ var allFriends = [
         ]
       }
 ]
-module.export = allFriends;
+module.exports = allFriends;
