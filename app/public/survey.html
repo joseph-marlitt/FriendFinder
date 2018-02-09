@@ -23,7 +23,7 @@
     <hr>
     <h3>Survey</h3>
     <h4>1. How much do you value critical thinking in a friend?</h4>
-        <select class="livesearch" style="width:400px;" id="q1">
+        <select class="chosen-select" class="livesearch" style="width:400px;" id="q1">
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -31,7 +31,7 @@
             <option value="5">5 (Strongly Agree)</option>
         </select>
     <h4>2. Climbing is an awesome thing to do, amirite?</h4>
-        <select class="livesearch" style="width:400px;" id="q2">
+        <select class="chosen-select" class="livesearch" style="width:400px;" id="q2">
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -39,7 +39,7 @@
             <option value="5">5 (Strongly Agree)</option>
         </select>
     <h4>3. You respond to simple requests or issues with the term "no worries..."</h4>
-        <select class="livesearch" style="width:400px;" id="q3">
+        <select class="chosen-select" class="livesearch" style="width:400px;" id="q3">
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -47,7 +47,7 @@
             <option value="5">5 (Strongly Agree)</option>
         </select>
     <h4>4. When you are driving, how often do you listen to podcasts vs. music?</h4>
-        <select class="livesearch" style="width:400px;" id="q4">
+        <select class="chosen-select" class="livesearch" style="width:400px;" id="q4">
             <option value="1">1 (Music)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -55,7 +55,7 @@
             <option value="5">5 (Podcast)</option>
         </select>
     <h4>5. Sports are the best reason to have live television.</h4>
-        <select class="livesearch" style="width:400px;" id="q5">
+        <select class="chosen-select" class="livesearch" style="width:400px;" id="q5">
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -63,7 +63,7 @@
             <option value="5">5 (Strongly Agree)</option>
         </select>
     <h4>6. Do you think that eating food is a necessity or a luxury?</h4>
-        <select class="livesearch" style="width:400px;" id="q6">
+        <select class="chosen-select" class="livesearch" style="width:400px;" id="q6">
             <option value="1">1 (Luxury)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -71,7 +71,7 @@
             <option value="5">5 (Necessity)</option>
         </select>
     <h4>7. Cats?</h4>
-        <select class="livesearch" style="width:400px;" id="q7">
+        <select class="chosen-select" class="livesearch" style="width:400px;" id="q7">
             <option value="1">1 (Love Em!)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -79,7 +79,7 @@
             <option value="5">5 (Hate Em!)</option>
         </select>
     <h4>8. Dogs?</h4>
-        <select class="livesearch" style="width:400px;" id="q8">
+        <select class="chosen-select" class="livesearch" style="width:400px;" id="q8">
             <option value="1">1 (Love Em!)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -87,7 +87,7 @@
             <option value="5">5 (Hate Em!)</option>
         </select>
     <h4>9. Pancakes or Waffles?</h4>
-        <select class="livesearch" style="width:400px;" id="q9">
+        <select class="chosen-select" class="livesearch" style="width:400px;" id="q9">
             <option value="1">1 (Pancakes)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -96,7 +96,7 @@
         </select>
     <br>
     <h4>10. Bacon or Sausage?</h4>
-        <select class="livesearch" style="width:400px;" id="q10">
+        <select class="chosen-select" class="livesearch" style="width:400px;" id="q10">
             <option value="1">1 (Sausage)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -105,14 +105,46 @@
         </select>
     <hr>
     <div class="text-left">
-        <button type="submit" class="btn btn-primary btn-md" id="submit">Submit Answers!</button>
+        <button type="submit" class="btn btn-primary btn-md" id="submitButton">Submit Answers!</button>
       </div>
+      <!-- Modal for response -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
   </div>
 
   <script type="text/javascript">
-    $('#submit').on('click', function(event) {
+    $('#submitButton').on('click', function(event) {
         event.preventDefault();
-        
+        function validateForm() {
+		  var isValid = true;
+		  $('.form-control').each(function() {
+		    if ( $(this).val() === '' )
+		        isValid = false;
+		  });
+
+		  $('.chosen-select').each(function() {
+
+		  	if( $(this).val() === "")
+		  		isValid = false
+		  })
+		  return isValid;
+		}
+
         var surveyAnswers = {
             name: $('#name').val().trim(),
             photo: $('#photo').val().trim(),
@@ -129,6 +161,11 @@
                 $('#q10').val().trim()
             ]
         };
+        console.log('surveyAnswers = ' + JSON.stringify(surveyAnswers));
+        $.post('/api/friends', surveyAnswers)
+        .done(function(data){
+
+        }) 
     });
 
   </script>

@@ -10,19 +10,27 @@ module.exports = function(app){
 
         var userScores = surveyAnswers.scores;
 
-        var newFriendName = '';
-        var newFriendPhoto = '';
-        
+        var matchName = '';
+        var matchPhoto = '';
+        var differencetotal = 100;
+
         console.log('surveyAnswers = ' + JSON.stringify(surveyAnswers));
         for (var i = 0; i < friends.length; i++) {
 
+            var diff = 0;
             for (var j = 0; j < friends.length; j++) {
                 diff += Math.abs(friends[i].scores[j] - userScores[j]);
             }
 
+            if (diff < differencetotal){
+                console.log('Closest match found = ' + diff);
+				console.log('Friend name = ' + friends[i].name);
+				console.log('Friend image = ' + friends[i].photo);
+            }
             
         }
         friends.push(surveyAnswers);
+        res.json({matchName: matchName, matchPhoto: matchPhoto});
     });
 }
 
