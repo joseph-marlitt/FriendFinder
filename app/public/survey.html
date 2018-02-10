@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <title>FriendFinder</title>
   <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link rel= "stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
@@ -104,30 +104,47 @@
             <option value="5">5 (Bacon)</option>
         </select>
     <hr>
-    <div class="text-left">
-        <button type="submit" class="btn btn-primary btn-md" id="submitButton">Submit Answers!</button>
-      </div>
-      <!-- Modal for response -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
+    <!-- Button trigger modal -->
+    <button type="submit" id="submitButton" class="btn btn-primary" data-toggle="modal" data-target="#resultsModal">
+        See your match!
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="resultsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Here is your new best friend!!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h3 id="matchName"></h3>
+              <img id="matchPhoto" src="" alt="">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
-  </div>
+        </div>
+      </div>
 
   <script type="text/javascript">
+    $(document).ready(function() {
+        $('#resultsModal').modal({
+            show: false,
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            inDuration: 300, // Transition in duration
+            outDuration: 200, // Transition out duration
+            startingTop: '4%', // Starting top style attribute
+            endingTop: '10%' // Ending top style attribute
+        });
+        $('#resultsModal').on('hidden.bs.modal', function (event) {
+            location.reload();
+            })
+		});
     $('#submitButton').on('click', function(event) {
         event.preventDefault();
         function validateForm() {
@@ -149,23 +166,25 @@
             name: $('#name').val().trim(),
             photo: $('#photo').val().trim(),
             scores:[
-                $('#q1').val().trim(),
-                $('#q2').val().trim(),
-                $('#q3').val().trim(),
-                $('#q4').val().trim(),
-                $('#q5').val().trim(),
-                $('#q6').val().trim(),
-                $('#q7').val().trim(),
-                $('#q8').val().trim(),
-                $('#q9').val().trim(),
-                $('#q10').val().trim()
+                parseInt($('#q1').val().trim()),
+                parseInt($('#q2').val().trim()),
+                parseInt($('#q3').val().trim()),
+                parseInt($('#q4').val().trim()),
+                parseInt($('#q5').val().trim()),
+                parseInt($('#q6').val().trim()),
+                parseInt($('#q7').val().trim()),
+                parseInt($('#q8').val().trim()),
+                parseInt($('#q9').val().trim()),
+                parseInt($('#q10').val().trim())
             ]
         };
         console.log('surveyAnswers = ' + JSON.stringify(surveyAnswers));
         $.post('/api/friends', surveyAnswers)
         .done(function(data){
-
-        }) 
+            $('#matchName').html(data.matchName);
+            $("#matchPhoto").attr("src", data.matchPhoto);
+            $('#resultsModal').modal('open');
+        }); 
     });
 
   </script>

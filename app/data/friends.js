@@ -3,7 +3,7 @@
 var friends = [
     {
         "name": "Joseph",
-        "photo": "test.jpg",
+        "photo": "https://pbs.twimg.com/profile_images/844270184730845184/5CN-soG_.jpg",
         "scores": [
             5,
             3,
@@ -18,13 +18,13 @@ var friends = [
         ]
     },
     {
-        "name": "Jacob",
-        "photo": "test2.jpg",
+        "name": "Stewie",
+        "photo": "https://i0.wp.com/images5.fanpop.com/image/photos/29500000/stewie-family-guy-29507418-2560-1758.png",
         "scores": [
             4,
             1,
             5,
-            2,
+            4,
             3,
             3,
             5,

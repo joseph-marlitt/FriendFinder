@@ -12,7 +12,7 @@ module.exports = function(app){
 
         var matchName = '';
         var matchPhoto = '';
-        var differencetotal = 100;
+        var totalDifference = 10000;
 
         console.log('surveyAnswers = ' + JSON.stringify(surveyAnswers));
         for (var i = 0; i < friends.length; i++) {
@@ -22,15 +22,18 @@ module.exports = function(app){
                 diff += Math.abs(friends[i].scores[j] - userScores[j]);
             }
 
-            if (diff < differencetotal){
+            if (diff < totalDifference){
                 console.log('Closest match found = ' + diff);
 				console.log('Friend name = ' + friends[i].name);
-				console.log('Friend image = ' + friends[i].photo);
+                console.log('Friend image = ' + friends[i].photo);
+                totalDifference = diff;
+				matchName = friends[i].name;
+				matchPhoto = friends[i].photo;
             }
             
         }
         friends.push(surveyAnswers);
-        res.json({matchName: matchName, matchPhoto: matchPhoto});
+        res.json({status: 'OK', matchName: matchName, matchPhoto: matchPhoto});
     });
 }
 
